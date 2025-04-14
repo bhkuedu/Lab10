@@ -23,11 +23,11 @@ double parse_number(const std::string &expression) {
     )); // get fractional 
 
     int total = 0;
-    total += main * 10^(fractionalLength + 1); // Add the main component sum, taken to the power of the fractional length plus one so that add everything together
+    total += main * std::pow(10, fractionalLength); // Add the main component sum, taken to the power of the fractional length plus one so that add everything together
     total += fractional; // Add fractional component to sum
 
     double large_result = static_cast<double>(total);
-    return large_result/(10^(fractionalLength));
+    return large_result/std::pow(10, fractionalLength);
 }
 
 
@@ -101,7 +101,6 @@ std::string add_numbers(const std::string& operand1, const std::string& operand2
     // Extract parsed numbers from strings (mostly just splits up the strings and verifies they're correct).
     ParsedNumber parsed1 = extract_valid_number(operand1);
     ParsedNumber parsed2 = extract_valid_number(operand2);
-    std::cout << parsed1.main << "." << parsed1.fraction << std::endl;
 
     // Verify that our values actually parsed successfully 
     if (!parsed1.isValid) {
